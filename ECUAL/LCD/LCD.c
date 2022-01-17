@@ -16,7 +16,6 @@ uint8_t LCD_u8Init(void){
 }
 
 uint8_t LCD_u8SendCommand(uint8_t command){
-	
 }
 
 uint8_t LCD_u8SendData(uint8_t data){
@@ -25,4 +24,9 @@ uint8_t LCD_u8SendData(uint8_t data){
 
 uint8_t LCD_u8SendString(uint8_t *str){
 	
+	uint8_t* iterator = str;
+	while(iterator != '0'){
+		LCD_u8SendData(*iterator);
+		TIMER0_u8PollingDelay(1);
+	}	
 }
