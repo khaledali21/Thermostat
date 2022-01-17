@@ -24,22 +24,22 @@ uint8_t ADC_u8StartConversion(ADCChannel_t* st_ChannelConfig)
 uint8_t ADC_u8GetRead(uint16_t* u16_ADCReading)
 {	
 	uint8_t u8ErrorState = STD_TYPES_OK ;
-	if ( GET_BIT(ADCSRA_REG,ADSC) == 1 )
+	uint8_t u8Counter ;
+	for ( u8Counter = 0 ; u8Counter < 10 ; u8Counter++ )
 	{
-		if ( TIMER0_u8PollingDelay(10) == STD_TYPES_NOK )
-			u8ErrorState = ADC_GetRead_Error ; 
-	}
-//while ( GET_BIT(ADCSRA_REG,ADSC) == 1 ) {}
-	if ( GET_BIT(ADCSRA_REG,ADSC) == 1 )
-	{
-		u8ErrorState = ADC_GetRead_Error ;
-	}
-	else 
-	{
-		SET_BIT(ADCSRA_REG,ADSC);
-		while( GET_BIT(ADCSRA_REG,ADIF) != 1 ){}
-		*u16_ADCReading = ADCL_REG | ( ADCH_REG << 8 );
-		CLR_BIT(ADCSRA_REG,ADIF);
+		if ( GET_BIT(ADCSRA_REG,ADSC) == 1 )
+		{
+			u8ErrorState = ADC_GetRead_Error ;
+		}
+		else 
+		{
+			SET_BIT(ADCSRA_REG,ADSC);
+			while( GET_BIT(ADCSRA_REG,ADIF) != 1 ){}
+			*u16_ADCReading = ADCL_REG | ( ADCH_REG << 8 );
+			CLR_BIT(ADCSRA_REG,ADIF);
+			u8ErrorState = STD_TYPES_OK ;
+			break ;		
+		}
 	}
 	return u8ErrorState ;
 }
