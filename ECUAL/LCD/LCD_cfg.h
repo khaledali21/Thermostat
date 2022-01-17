@@ -11,16 +11,16 @@
 #define RS_PIN PIN1
 #define  RW_PORT PORTA
 #define RW_PIN PIN2
-#define  E_PORT PORTB
+#define  E_PORT PORTA
 #define E_PIN PIN3
 #define  D4_PORT PORTA
-#define D4_PIN PIN3
+#define D4_PIN PIN4
 #define  D5_PORT PORTA
-#define D5_PIN PIN4
+#define D5_PIN PIN5
 #define  D6_PORT PORTA
-#define D6_PIN PIN5
+#define D6_PIN PIN6
 #define  D7_PORT PORTA
-#define D7_PIN PIN6
+#define D7_PIN PIN7
 
 
 

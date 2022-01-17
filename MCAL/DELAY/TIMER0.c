@@ -55,7 +55,8 @@ uint8_t TIMER0_u8PollingDelay(uint16_t delay) {
 	delay_stat = DELAY_BUSY;
 	counter = 0;						// reset counter to 0
 	compare = delay;
-	TIMER0_u8Init();					// initialize timer0
+	TIMER0_u8Init();				// initialize timer0
+	TCNT0_REG = 0;
 	OCR0_REG = (F_CPU / PRESCALER);		// set OCR0_REG value
 	SET_BIT(TIMSK_REG, OCIE0);			// enable interrupt
 	SET_BIT(SREG_REG, I_BIT);
