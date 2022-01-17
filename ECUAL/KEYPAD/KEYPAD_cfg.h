@@ -11,7 +11,6 @@
 #define KEYPAD_ROWS 3
 #define KEYPAD_COL  3
 
-
 #define COL_S   5
 #define COL_MAX 8
 
@@ -30,6 +29,5 @@
 #define ROW_PIN2  PIN4
 
 #define KEYPAD_VALUES {{1,2,3},{4,5,6},{7,8,9}}
-
 
 #endif /* ECUAL_KEYPAD_KEYPAD_CFG_H_ */

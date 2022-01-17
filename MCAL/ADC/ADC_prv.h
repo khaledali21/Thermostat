@@ -21,7 +21,6 @@
 #define ADC_RIGHT_ADJUST 0
 #define ADC_LEFT_ADJUST	 1
 
-
 #define ADC_PRESCALAR_2		1
 #define ADC_PRESCALAR_4		2
 #define ADC_PRESCALAR_8		3
@@ -60,7 +59,7 @@
 #define ADTS2		7
 
 // define max ADC reading 
-#define ADC_MAXREAD		1024
+#define ADC_RESOLUTION		1024
 
 /*
  * Mask for accessing reference voltage bits
@@ -90,6 +89,17 @@
  * Mask for accessing the trigger source bits
  */
 #define ADC_TRIGGER_SOURCE_MASK (7<<5)
+
+#if ADC_VREF ==  ADC_AVCC
+#define ADC_MAX_VOLT 5
+#elif ADC_VREG == ADC_INTENRNAL
+#define ADC_MAX_VOLT 2.56
+#elif ADC_VREG == ADC_AREF
+#define ADC_MAX_VOLT ADC_EXT_VREF
+#endif
+
+// Declaring the ISR of the ADC Interrupt
+void __vector_16(void) __attribute__ ((signal, used));
 
 
 #endif /* MCAL_ADC_ADC_PRV_H_ */

@@ -3,8 +3,7 @@
  *
  * Created: 1/17/2022 12:19:20 AM
  *  Author: Khaled Ali
- */ 
-
+ */
 
 #ifndef LCD_H_
 #define LCD_H_
@@ -12,7 +11,6 @@
 #include "../../LIB/Typedef.h"
 #include "LCD_cfg.h"
 #include "../../MCAL/DIO/DIO_interface.h"
-
 
 uint8_t LCD_u8Init(void);
 

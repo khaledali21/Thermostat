@@ -3,8 +3,7 @@
  *
  * Created: 1/9/2022 12:20:30 AM
  *  Author: Khaled Ali
- */ 
-
+ */
 
 #ifndef TIMER0_H_
 #define TIMER0_H_
@@ -24,7 +23,6 @@
 #define CS02    2
 #define CS01    1
 #define CS00    0
-
 
 /* TCCR1A */
 #define COM1A1  7
@@ -46,7 +44,6 @@
 #define CS11    1
 #define CS10    0
 
-
 /* TCCR2 */
 #define FOC2    7
 #define WGM20   6
@@ -67,21 +64,16 @@
 #define OCIE0   1
 #define TOIE0   0
 
-
 /* SREG */
 #define I_BIT 7
 
-typedef	enum{
-	TIMER0,
-	TIMER1,
-	TIMER2
-}TIMER;
+typedef enum {
+	TIMER0, TIMER1, TIMER2
+} TIMER;
 
-typedef enum{
-	DELAY_ERR,
-	DELAY_OK,
-	DELAY_BUSY
-}DELAY;
+typedef enum {
+	DELAY_ERR, DELAY_OK, DELAY_BUSY
+} DELAY;
 uint8_t TIMER0_u8Init(void);
 uint8_t TIMER0_u8InterruptDelay(uint16_t delay, void (*fnCallBack)(void));
 uint8_t TIMER0_u8PollingDelay(uint16_t delay);

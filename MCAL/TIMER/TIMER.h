@@ -3,8 +3,7 @@
  *
  * Created: 1/9/2022 12:20:30 AM
  *  Author: Binary Beasts
- */ 
-
+ */
 
 #ifndef TIMER_H_
 #define TIMER_H_
@@ -27,7 +26,6 @@
 #define CS01    1
 #define CS00    0
 
-
 /* TCCR1A_REG BITS */
 #define COM1A1  7
 #define COM1A0  6
@@ -47,7 +45,6 @@
 #define CS12    2
 #define CS11    1
 #define CS10    0
-
 
 /* TCCR2_REG BITS */
 #define FOC2    7
@@ -69,15 +66,13 @@
 #define OCIE0   1
 #define TOIE0   0
 
-
 /* SREG_REG GLOBAL INTERRUPT BIT */
 #define I_BIT 7
 
 /* enum to select which channel PWM will be used  */
-typedef enum{
-	CHANNELA,
-	CHANNELB
-}CHANNEL;
+typedef enum {
+	CHANNELA, CHANNELB
+} CHANNEL;
 
 // function to initialize TIMER1 
 uint8_t TIMER1_u8Init(void);
@@ -86,7 +81,7 @@ uint8_t TIMER1_u8Init(void);
 uint8_t TIMER1_u8Start(void);
 
 // function to set channel register value to compare with 
-uint8_t TIMER1_u8SetComapre(CHANNEL channel,uint16_t compareValue);
+uint8_t TIMER1_u8SetComapre(CHANNEL channel, uint16_t compareValue);
 
 // function to set pointer to the function run in interrupt  
 uint8_t TIMER1_u8SetChannelInterrupt(CHANNEL channel, void (*fnCallBack)(void));
@@ -102,6 +97,5 @@ void __vector_8(void) __attribute__ ((signal, used));
 
 // ISR for TIMER1 OVF
 void __vector_9(void) __attribute__ ((signal, used));
-
 
 #endif /* TIMER_H_ */

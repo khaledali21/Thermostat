@@ -76,6 +76,56 @@
 #define TWSR_REG		(*((volatile uint8_t*) (0x21)))
 #define TWBR_REG		(*((volatile uint8_t*) (0x20)))
 
-#define PUD_BIT		2
+// TCCR0 (TIMER0 Control Register) Register Bits
+#define CS00_BIT	0
+#define CS01_BIT	1
+#define CS02_BIT	2
+#define WGM01_BIT	3
+#define COM00_BIT	4
+#define COM01_BIT	5
+#define WGM00_BIT	6
+#define FOC0_BIT	7
+
+//SREG Register Bits
+#define I_BIT		7
+
+//TIMSK Register Bits
+#define TOIE0_BIT		0
+#define OCIE0_BIT		1
+#define TOIE1_BIT		2
+#define OCIE1B_BIT		3
+#define OCIE1A_BIT		4
+#define TICIE1_BIT		5
+#define TOIE2_BIT		6
+#define OCIE2_BIT		7
+
+//ADMUX Register BITS
+#define REFS1_BIT	7
+#define REFS0_BIT	6
+#define ADLAR_BIT	5
+#define MUX4_BIT	4
+#define MUX3_BIT	3
+#define MUX2_BIT	2
+#define MUX1_BIT	1
+#define MUX0_BIT	0
+
+//ADCSRA Register BITS
+#define ADPS0_BIT		0
+#define ADPS1_BIT		1
+#define ADPS2_BIT		2
+#define ADIE_BIT	    3
+#define ADIF_BIT	    4
+#define ADATE_BIT	    5
+#define ADSC_BIT	    6
+#define ADEN_BIT		7
+
+//SFIOR Register BITS
+#define PSR10_BIT		0
+#define PSR2_BIT		1
+#define PUD_BIT			2
+#define ACME_BIT		3
+#define ADTS0_BIT		5
+#define ADTS1_BIT		6
+#define ADTS2_BIT		7
 
 #endif /* ATMEGA32_H_ */

@@ -1,4 +1,3 @@
-
 #ifndef BIT_MATH_H_
 #define BIT_MATH_H_
 
