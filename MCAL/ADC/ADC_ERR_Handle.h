@@ -8,7 +8,7 @@
 #ifndef MCAL_ADC_ADC_ERR_HANDLE_H_
 #define MCAL_ADC_ADC_ERR_HANDLE_H_
 
-#define ADC_InitChannel_Error			0x51
+#define ADC_Init_Error					0x51
 #define ADC_StartConversion_Error		0x52
 #define ADC_GetRead_Error				0x53
 #define ADC_GetVolt_Error				0x54

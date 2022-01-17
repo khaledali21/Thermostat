@@ -54,7 +54,42 @@
 #define MUX1		1
 #define MUX0		0
 
+// trigger source select bits  
+#define ADTS0		5
+#define ADTS1		6
+#define ADTS2		7
+
 // define max ADC reading 
 #define ADC_MAXREAD		1024
+
+/*
+ * Mask for accessing reference voltage bits
+ */
+
+#define ADC_VREF_BITS	6
+
+#define ADC_VREF_MASK (3<<6)
+
+/*
+ * Mask for accessing the Prescaler bits
+ */
+
+#define ADC_PRESCALAR_BITS	0
+
+#define ADC_PRESCALAR_MASK (7<<0)
+
+/*
+ * Mask for accessing the MUX bits
+ */
+
+#define ADC_MUX_BITS	0
+
+#define ADC_MUX_MASK (31<<0)
+
+/*
+ * Mask for accessing the trigger source bits
+ */
+#define ADC_TRIGGER_SOURCE_MASK (7<<5)
+
 
 #endif /* MCAL_ADC_ADC_PRV_H_ */
