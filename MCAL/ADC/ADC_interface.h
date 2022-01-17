@@ -12,7 +12,7 @@
 #include "ADC_ERR_Handle.h"
 #include "ADC_prv.h"
 
- enum{
+ typedef enum{
 	CHANNEL1,
 	CHANNEL2,
 	CHANNEL3,
@@ -30,9 +30,9 @@ typedef struct{
 
 uint8_t ADC_u8InitChannel(ADCChannel_t* st_ChannelConfig);
 uint8_t ADC_u8StartConversion(ADCChannel_t* st_ChannelConfig);
-
 uint8_t ADC_u8GetRead(uint16_t* u16_ADCReading);
-uint8_t ADC_EnableInterrupt(void);
-uint8_t ADC_DisableInterrupt(void);
+uint8_t ADC_u8GetVolt(f32_t* u16_ADCReading);
+uint8_t ADC_u8EnableInterrupt(void);
+uint8_t ADC_u8DisableInterrupt(void);
 
 #endif /* MCAL_ADC_ADC_INTERFACE_H_ */

@@ -34,7 +34,13 @@
  *     -ADC_PRESCALAR_128
  */
 
-#define ADC_PRESCALAR	ADC_PRESCALAR_16
+/*
+ * in this case F_CPU 8MHz 8MHz / 64 = 125 KHz 
+ * NOTE : the successive approximation circuitry requires an input clock frequency between
+ * 50kHz and 200kHz to get maximum resolution.
+*/
+
+#define ADC_PRESCALAR	ADC_PRESCALAR_64		
 
 
 #endif /* MCAL_ADC_ADC_CFG_H_ */
