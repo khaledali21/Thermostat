@@ -11,6 +11,7 @@
 #include "../../LIB/Typedef.h"
 #include "LCD_cfg.h"
 #include "../../MCAL/DIO/DIO_interface.h"
+#include "../../MCAL/DELAY/TIMER0.h"
 
 uint8_t LCD_u8Init(void);
 
