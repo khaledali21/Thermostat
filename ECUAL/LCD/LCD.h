@@ -21,5 +21,6 @@ uint8_t LCD_u8SendCommand(uint8_t command);
 uint8_t LCD_u8SendData(uint8_t data);
 
 uint8_t LCD_u8SendString(uint8_t *str);
+uint8_t LCD_u8SetCursor(uint8_t row, uint8_t col);
 
 #endif /* LCD_H_ */
