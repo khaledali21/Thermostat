@@ -36,7 +36,8 @@ typedef enum {
 } ADCTriggerSource_t;
 
 typedef struct {
-	ChannelNumber_t channel;
+	uint8_t port;
+	uint8_t pin;
 	ADCTriggerSource_t triggerSource;
 } ADCChannel_t;
 
