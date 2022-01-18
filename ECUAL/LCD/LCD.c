@@ -204,20 +204,19 @@ uint8_t LCD_u8SendString(uint8_t *str){
 
 }
 
-void LCD_u8SendNumber(sint8_t num)
+void LCD_u8SendNumber(uint16_t num)
 {
-	sint8_t y=1;
-	if(num<0)
-	{
-		LCD_u8SendData('-');
-		num*=-1;
-
+	uint16_t y = 1;
+	while(num > 0){
+		y = (y * 10) + (num % 10);
+		num = num /10;
+	}
+	
 	while(y>1)
 	{
-	LCD_u8SendData((y%10)+48);
-	y=y/10;
+		LCD_u8SendData((y%10)+48);
+		y=y/10;
 	}
-}
 }
 
 uint8_t LCD_u8SetCursor(uint8_t row, uint8_t col)
