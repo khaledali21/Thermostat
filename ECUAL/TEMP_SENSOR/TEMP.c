@@ -27,7 +27,7 @@ uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, f32_t* f32TempReading)
 		}else
 		{
 			ADC_u8GetVolt(f32TempReading);
-			f32TempReading = (f32TempReading/10);
+			*f32TempReading = (*f32TempReading/10);
 		}
 	}else
 	{
