@@ -212,7 +212,7 @@ void LCD_u8SendNumber(sint8_t num)
 	sint8_t y=1;
 	if(num<0)
 	{
-		LCD_u8SendCommand('-');
+		LCD_u8SendData('-');
 		num*=-1;
 	}
 	while(num>0)
@@ -222,7 +222,7 @@ void LCD_u8SendNumber(sint8_t num)
 	}
 	while(y>1)
 	{
-	LCD_u8SendCommand((y%10)+48);
+	LCD_u8SendData((y%10)+48);
 	y=y/10;
 	}
 	
