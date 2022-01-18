@@ -11,6 +11,7 @@
 
 void TEMP_u8Init(void)
 {
+	DIO_u8SetPinDirection(PORTA, PIN0, DIO_INPUT); 
 	ADC_u8Init();
 }
 
