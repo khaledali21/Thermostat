@@ -13,4 +13,17 @@
 #include "../../MCAL/DIO/DIO_interface.h"
 #include "../../MCAL/ADC/ADC_interface.h"
 
+typedef struct{
+	uint8_t port;
+	uint8_t pin;
+}TEMPElement_t;
+
+typedef enum{
+	TEMP_OK=1,
+	TEMP_NULL_INPUT,
+}TEMP_ErrorState;
+
+uint8_t TEMP_u8Init(TEMPElement_t* TempElement);
+uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, f32_t* f32TempReading);
+
 #endif /* ECUAL_TEMP_SENSOR_TEMP_INTERFACE_H_ */

@@ -38,7 +38,7 @@ uint8_t ADC_u8StartConversion(ADCChannel_t* st_ChannelConfig) {
 	if (st_ChannelConfig != NULL) {
 		// Choose the ADC Channel to convert from
 		ADMUX_REG &= ~ ADC_MUX_MASK;
-		ADMUX_REG |= (st_ChannelConfig->channel << ADC_MUX_BITS);
+		ADMUX_REG |= (st_ChannelConfig->pin << ADC_MUX_BITS);
 
 		//Set the conversion mode and trigger source
 		if (st_ChannelConfig->triggerSource == ADC_SINGLE_CONVERSION) {
