@@ -205,25 +205,3 @@ uint8_t LCD_u8SendString(uint8_t *str){
 	return state;
 
 }
-
-
-void LCD_u8SendNumber(sint8_t num)
-{
-	sint8_t y=1;
-	if(num<0)
-	{
-		LCD_u8SendCommand('-');
-		num*=-1;
-	}
-	while(num>0)
-	{
-	y=(y*10)+(num%10);
-	num=num/10;
-	}
-	while(y>1)
-	{
-	LCD_u8SendCommand((y%10)+48);
-	y=y/10;
-	}
-	
-}

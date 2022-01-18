@@ -22,7 +22,4 @@ uint8_t LCD_u8SendData(uint8_t data);
 
 uint8_t LCD_u8SendString(uint8_t *str);
 
-void LCD_u8SendNumber(sint8_t num);
-
-
 #endif /* LCD_H_ */
