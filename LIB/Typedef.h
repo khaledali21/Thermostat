@@ -13,7 +13,7 @@ typedef float f32_t;
 typedef double f64_t;
 typedef long double f128_t;
 
-#define STD_TYPES_OK 	0
-#define STD_TYPES_NOK 	1
+#define STD_TYPES_OK 	1
+#define STD_TYPES_NOK 	0
 #define NULL 			0
 #endif // DEF_H_INCLUDED
