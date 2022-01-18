@@ -7,9 +7,7 @@
 
 #include "LCD.h"
 #include "../LED/LED.h"
-LED_t led1 = {PORTB, PIN7};
 uint8_t LCD_u8Init(void) {
-	LED_u8Init(led1);
 	uint8_t state = STD_TYPES_OK;
 	state = DIO_u8SetPinDirection(RS_PORT, RS_PIN, DIO_OUTPUT);
 	if(state == STD_TYPES_OK){
@@ -206,7 +204,6 @@ uint8_t LCD_u8SendString(uint8_t *str){
 
 }
 
-
 void LCD_u8SendNumber(sint8_t num)
 {
 	sint8_t y=1;
@@ -214,16 +211,36 @@ void LCD_u8SendNumber(sint8_t num)
 	{
 		LCD_u8SendData('-');
 		num*=-1;
-	}
-	while(num>0)
-	{
-	y=(y*10)+(num%10);
-	num=num/10;
-	}
+
 	while(y>1)
 	{
 	LCD_u8SendData((y%10)+48);
 	y=y/10;
 	}
-	
+}
+}
+
+uint8_t LCD_u8SetCursor(uint8_t row, uint8_t col)
+{	uint8_t state = STD_TYPES_OK;
+	if(col > 15){
+		state = STD_TYPES_NOK;
+	}
+	else{
+		switch (row)
+		{
+			case 0:
+			col |= 0x80;
+			break;
+			case 1:
+			col |= 0xC0;
+			break;
+			default:
+			state = STD_TYPES_NOK;
+			break;
+		}
+	}
+	if(state == STD_TYPES_OK){
+		state = LCD_u8SendCommand(col);
+	}
+	return state;
 }
