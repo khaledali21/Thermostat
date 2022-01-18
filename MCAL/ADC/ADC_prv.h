@@ -90,8 +90,12 @@
  */
 #define ADC_TRIGGER_SOURCE_MASK (7<<5)
 
+
+/*
+ * Setting the MAX Voltage used by the ADC depending of the reference Voltage
+ */
 #if ADC_VREF ==  ADC_AVCC
-#define ADC_MAX_VOLT 5
+#define ADC_MAX_VOLT 5000
 #elif ADC_VREG == ADC_INTENRNAL
 #define ADC_MAX_VOLT 2.56
 #elif ADC_VREG == ADC_AREF

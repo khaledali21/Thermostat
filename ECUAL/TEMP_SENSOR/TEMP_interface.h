@@ -21,6 +21,7 @@ typedef struct{
 typedef enum{
 	TEMP_OK=1,
 	TEMP_NULL_INPUT,
+	TEMP_ADC_Error,
 }TEMP_ErrorState;
 
 uint8_t TEMP_u8Init(TEMPElement_t* TempElement);
