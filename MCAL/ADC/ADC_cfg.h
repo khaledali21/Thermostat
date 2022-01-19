@@ -43,6 +43,6 @@
  * 50kHz and 200kHz to get maximum resolution.
  */
 
-#define ADC_PRESCALAR	ADC_PRESCALAR_64		
+#define ADC_PRESCALAR	ADC_PRESCALAR_128
 
 #endif /* MCAL_ADC_ADC_CFG_H_ */

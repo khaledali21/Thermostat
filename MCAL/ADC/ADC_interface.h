@@ -41,10 +41,10 @@ typedef struct {
 	ADCTriggerSource_t triggerSource;
 } ADCChannel_t;
 
-void ADC_u8Init(void);
+uint8_t ADC_u8Init(void);
 uint8_t ADC_u8StartConversion(ADCChannel_t* st_ChannelConfig);
 uint8_t ADC_u8GetRead(uint16_t* u16_ADCReading);
-uint8_t ADC_u8GetVolt(f32_t* ff32_ADCVolt);
+uint8_t ADC_u8GetVolt(uint16_t* ff32_ADCVolt);
 uint8_t ADC_u8EnableInterrupt(void (*fnCallBack)(void));
 uint8_t ADC_u8DisableInterrupt(void);
 
