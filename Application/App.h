@@ -15,7 +15,7 @@
 #include "../ECUAL/MOTOR/MOTOR_interface.h"
 #include "../ECUAL/KEYPAD/KEYPAD_interface.h"
 #include "../ECUAL/TEMP_SENSOR/TEMP_interface.h"
-
+#include "../MCAL/DELAY/TIMER2.h"
 
 typedef enum{
 	SETTINGS,
@@ -24,6 +24,6 @@ typedef enum{
 }APP_MODE;
 
 void App(void);
-
+void timer2_CallBack(void);
 uint8_t printLCD(APP_MODE mode);
 #endif /* APP_H_ */
