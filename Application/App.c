@@ -4,8 +4,6 @@
  * Created: 1/18/2022 5:11:05 PM
  *  Author: Khaled Ali
  */ 
-
-
 #include "App.h"
 LED_t led0 = {PORTB, PIN4};
 LED_t led1 = {PORTB, PIN5};
@@ -78,10 +76,6 @@ void App(void){
 			break;
 			case AUTO:
 			TEMP_u8GetRead(&temp_sensor, &temp_value);
-			if((uint8_t) old_temp != (uint8_t) temp_value){
-				printLCD(mode);
-			}
-			old_temp = temp_value;
 			if(temp_value < 20){
 				motor_speed = 0;
 				MOTOR_Stop(&motor);
@@ -98,6 +92,10 @@ void App(void){
 				motor_speed = 90;
 				MOTOR_Move(&motor, 90, CLOCKWISE);
 			}
+			if((uint8_t) old_temp != (uint8_t) temp_value){
+				printLCD(mode);
+			}
+			old_temp = temp_value;
 			switch(key){
 				case  5:
 				mode = SETTINGS;
