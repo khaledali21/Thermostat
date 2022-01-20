@@ -11,9 +11,11 @@ LED_t led_err = {PORTB, PIN7};
 TEMPElement_t temp_sensor = {PORTA, PIN0};
 MotorDef_t motor = {PORTD, PIN2, PIN3, PIN4, CHANNELA};
 APP_MODE volatile mode = SETTINGS;
-f32_t temp_value;
-f32_t old_temp;
+uint16_t temp_value;
+uint16_t temp_value;
+uint16_t old_temp;
 uint8_t motor_speed = 0;
+uint8_t old_speed = 0;
 uint8_t key;
 void App(void){
 	uint8_t state = STD_TYPES_OK;
@@ -23,7 +25,6 @@ void App(void){
 	LCD_u8Init();
 	KEYPAD_u8Init();
 	TEMP_u8Init();
-	TIMER2_u8Init();
 	MOTOR_init(&motor);
 	printLCD(mode);
 	while(1){
@@ -92,10 +93,12 @@ void App(void){
 				motor_speed = 90;
 				MOTOR_Move(&motor, 90, CLOCKWISE);
 			}
-			if((uint8_t) old_temp != (uint8_t) temp_value){
+			if((temp_value != old_temp)|| (motor_speed != old_speed)){
 				printLCD(mode);
+				TIMER0_u8PollingDelay(100);
 			}
 			old_temp = temp_value;
+			old_speed = motor_speed;
 			switch(key){
 				case  5:
 				mode = SETTINGS;

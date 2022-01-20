@@ -10,18 +10,10 @@
 #include "../../LIB/atmega32.h"
 #include "../DELAY/TIMER0.h"
 #include "ADC_interface.h"
-#include "../../ECUAL/LED/LED.h"
-LED_t led_err = {PORTB, PIN7};
-LED_t led_err2 = {PORTB, PIN6};
-LED_t led_err3 = {PORTB, PIN4};
-
 
 static void (*ADC_callBack)(void);
 uint8_t ADC_u8Init(void) {
-	uint8_t u8ErrorState;
-	LED_u8Init(led_err);
-	LED_u8Init(led_err2);
-	LED_u8Init(led_err3);
+	uint8_t u8ErrorState = ADC_OK;
 	if (ADC_VREF== 0 || ADC_VREF==1 || ADC_VREF == 3)
 	{
 		ADMUX_REG &= ~ ADC_VREF_MASK;
@@ -64,7 +56,6 @@ uint8_t ADC_u8StartConversion(ADCChannel_t* st_ChannelConfig) {
 		//Set the conversion mode and trigger source
 		if (st_ChannelConfig->triggerSource == ADC_SINGLE_CONVERSION) {
 			// if the conversion mode is single conversion disable the auto trigger then give the start signal
-			LED_u8On(led_err3);
 			//CLR_BIT(ADCSRA_REG, ADATE_BIT);
 			SET_BIT(ADCSRA_REG, ADSC_BIT);
 		} else {
@@ -98,14 +89,11 @@ uint8_t ADC_u8GetRead(uint16_t* u16_ADCReading) {
 	{
 		// wait until the current conversion is finished
 
-		LED_u8On(led_err2);
 		while ( GET_BIT(ADCSRA_REG,ADIF_BIT) != 1);
-		LED_u8Off(led_err2);
 		//first check for the data adjustment then Get the data from the ADC data registers
 		if (GET_BIT(ADMUX_REG,ADLAR_BIT)==1)
 		{
 			//if the data is left ADJUSTED then
-			LED_u8On(led_err);
 			*u16_ADCReading=(ADCL_REG>>6)|(ADCH_REG<<2);
 		}else
 		{
