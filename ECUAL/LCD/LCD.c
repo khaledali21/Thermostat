@@ -206,11 +206,12 @@ uint8_t LCD_u8SendString(uint8_t *str){
 
 void LCD_u8SendNumber(uint16_t num)
 {
+
 	uint16_t y = 1;
-	while(num > 0){
+	do{
 		y = (y * 10) + (num % 10);
 		num = num /10;
-	}
+	}while(num > 0);
 	
 	while(y>1)
 	{
