@@ -9,7 +9,7 @@ LED_t led0 = {PORTB, PIN4};
 LED_t led1 = {PORTB, PIN5};
 LED_t led_err = {PORTB, PIN7};
 TEMPElement_t temp_sensor = {PORTA, PIN0};
-MotorDef_t motor = {PORTD, PIN6, PIN7, PIN5, CHANNELA};
+MotorDef_t motor = {PORTD, PIN2, PIN3, PIN4, CHANNELA};
 APP_MODE volatile mode = SETTINGS;
 uint16_t temp_value;
 uint16_t temp_value;
@@ -93,7 +93,7 @@ void App(void){
 				motor_speed = 90;
 				MOTOR_Move(&motor, 90, CLOCKWISE);
 			}
-			if((temp_value != old_temp)|| (motor_speed != old_speed)){
+			if((abs(temp_value, old_temp) > 3)|| (motor_speed != old_speed)){
 				printLCD(mode);
 				TIMER0_u8PollingDelay(100);
 			}
