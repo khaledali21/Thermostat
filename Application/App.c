@@ -9,7 +9,7 @@ LED_t led0 = {PORTB, PIN4};
 LED_t led1 = {PORTB, PIN5};
 LED_t led_err = {PORTB, PIN7};
 TEMPElement_t temp_sensor = {PORTA, PIN0};
-MotorDef_t motor = {PORTD, PIN2, PIN3, PIN4, CHANNELA};
+MotorDef_t motor = {PORTD, PIN6, PIN7, PIN5, CHANNELA};
 APP_MODE volatile mode = SETTINGS;
 uint16_t temp_value;
 uint16_t temp_value;
