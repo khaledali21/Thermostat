@@ -12,7 +12,6 @@ TEMPElement_t temp_sensor = {PORTA, PIN0};
 MotorDef_t motor = {PORTD, PIN2, PIN3, PIN4, CHANNELA};
 APP_MODE volatile mode = SETTINGS;
 uint16_t temp_value;
-uint16_t temp_value;
 uint16_t old_temp;
 uint8_t motor_speed = 0;
 uint8_t old_speed = 0;
@@ -32,11 +31,11 @@ void App(void){
 		switch(mode){
 			case SETTINGS:
 			switch(key){
-				case 4:
+				case MANUAL_KEY:
 				mode = MANUAL;
 				printLCD(mode);
 				break;
-				case 6:
+				case AUTO_KEY:
 				mode = AUTO;
 				printLCD(mode);
 				break;
@@ -46,19 +45,19 @@ void App(void){
 			break;
 			case MANUAL:
 			switch(key){
-				case 2:
+				case UP_KEY:
 				if(motor_speed < 100){
 					motor_speed += 10;
 					printLCD(mode);
 				}
 				break;
-				case 8:
+				case DOWN_KEY:
 				if(motor_speed > 0){
 					motor_speed -= 10;
 					printLCD(mode);
 				}
 				break;
-				case 5:
+				case SETTINGS_KEY:
 				mode = SETTINGS;
 				printLCD(mode);
 				break;
@@ -66,7 +65,7 @@ void App(void){
 				break;
 			}
 			if(motor_speed <=30 && motor_speed > 0){
-				MOTOR_Move(&motor, 30, CLOCKWISE);
+				MOTOR_Move(&motor, SLOW, CLOCKWISE);
 			}
 			else if(motor_speed == 0){
 				MOTOR_Stop(&motor);
@@ -82,16 +81,16 @@ void App(void){
 				MOTOR_Stop(&motor);
 			}
 			else if(temp_value > 21 && temp_value < 25){
-				motor_speed = 30;
-				MOTOR_Move(&motor, 30, CLOCKWISE);
+				motor_speed = SLOW;
+				MOTOR_Move(&motor, SLOW, CLOCKWISE);
 			}
 			else if(temp_value > 26 && temp_value < 30){
-				motor_speed = 60;
-				MOTOR_Move(&motor, 60, CLOCKWISE);
+				motor_speed = MEDIUM;
+				MOTOR_Move(&motor, MEDIUM, CLOCKWISE);
 			}
 			else if(temp_value > 31){
-				motor_speed = 90;
-				MOTOR_Move(&motor, 90, CLOCKWISE);
+				motor_speed = FAST;
+				MOTOR_Move(&motor, FAST, CLOCKWISE);
 			}
 			if((abs(temp_value, old_temp) > 3)|| (motor_speed != old_speed)){
 				printLCD(mode);
@@ -100,7 +99,7 @@ void App(void){
 			old_temp = temp_value;
 			old_speed = motor_speed;
 			switch(key){
-				case  5:
+				case  SETTINGS_KEY:
 				mode = SETTINGS;
 				printLCD(mode);
 				break;
