@@ -23,12 +23,6 @@
 #define D7_PIN PIN7
 
 
-#define LCD_CLEAR 0x01
-#define LCD_4BIT_MODE 0x28
-#define LCD_8BIT_MODE 0x38
-#define LCD_DISPLAY_ON 0x0C
-#define LCD_SHIFT_CURSOR_RIGHT 0x06
-
 
 #endif /* LCD_CFG_H_ */
 
