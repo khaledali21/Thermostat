@@ -13,6 +13,8 @@
 #include "../../MCAL/DIO/DIO_interface.h"
 #include "../../MCAL/ADC/ADC_interface.h"
 
+#define TOTAL_READINGS_COUNT 100
+
 typedef struct{
 	uint8_t port;
 	uint8_t pin;

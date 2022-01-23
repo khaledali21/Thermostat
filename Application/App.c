@@ -10,8 +10,6 @@
 /*
  * Defining all LEDs in our project
  */
-LED_t led0 = {PORTB, PIN4};
-LED_t led1 = {PORTB, PIN5};
 LED_t led_err = {PORTB, PIN7};
 
 /*
@@ -41,8 +39,6 @@ void App(void){
 /*
  * Initiating the used modules and sensors
  */
-	LED_u8Init(&led0);
-	LED_u8Init(&led1);
 	LED_u8Init(&led_err);
 	LCD_u8Init();
 	KEYPAD_u8Init();
