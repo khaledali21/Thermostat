@@ -16,5 +16,6 @@
 #define ADC_EnableInterrupt_Error		0x55
 #define ADC_DisableInterrupt_Error		0x56
 #define ADC_NULL_INPUT					0x57
-
+#define ADC_VREF_ERROR					0x58
+#define ADC_WRONG_PRESCALAR				0x59
 #endif /* MCAL_ADC_ADC_EER_HANDLE_H_ */

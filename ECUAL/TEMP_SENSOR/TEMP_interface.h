@@ -24,7 +24,7 @@ typedef enum{
 	TEMP_ADC_Error,
 }TEMP_ErrorState;
 
-uint8_t TEMP_u8Init(TEMPElement_t* TempElement);
-uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, f32_t* f32TempReading);
+void TEMP_u8Init(void);
+uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, uint16_t* f32TempReading);
 
 #endif /* ECUAL_TEMP_SENSOR_TEMP_INTERFACE_H_ */

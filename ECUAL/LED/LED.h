@@ -20,15 +20,15 @@ typedef struct {
 } LED_t;
 
 // function to initialize LED 
-uint8_t LED_u8Init(LED_t led);
+uint8_t LED_u8Init(LED_t* led);
 
 // function ta turn LED on
-uint8_t LED_u8On(LED_t led);
+uint8_t LED_u8On(LED_t* led);
 
 // function to turn LED off
-uint8_t LED_u8Off(LED_t led);
+uint8_t LED_u8Off(LED_t* led);
 
 // function to toggle LED state
-uint8_t LED_u8Toggle(LED_t led);
+uint8_t LED_u8Toggle(LED_t* led);
 
 #endif /* LED_H_ */

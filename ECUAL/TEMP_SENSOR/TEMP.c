@@ -51,7 +51,6 @@ uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, uint16_t* f32TempReading)
 		}
 		if (u8TimeoutCounter==200)
 		{
-			u8ErrorState ==TEMP_UNSTABLE;
 		}
 	}else
 	{

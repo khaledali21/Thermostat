@@ -7,9 +7,11 @@
 
 #include "LCD.h"
 #include "../LED/LED.h"
-LED_t led1 = {PORTB, PIN7};
+/*
+* brief: This function is used to initialize pin directions of the LCD as defined in the configurations and in 4-Bit Mode
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
 uint8_t LCD_u8Init(void) {
-	LED_u8Init(led1);
 	uint8_t state = STD_TYPES_OK;
 	state = DIO_u8SetPinDirection(RS_PORT, RS_PIN, DIO_OUTPUT);
 	if(state == STD_TYPES_OK){
@@ -55,7 +57,11 @@ uint8_t LCD_u8Init(void) {
 
 }
 
-
+/*
+* brief: This function is used to send a command to the LCD
+* param.: (input) the command to be sent
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
 uint8_t LCD_u8SendCommand(uint8_t command){
 	uint8_t state = STD_TYPES_OK;	
 	uint8_t bit = GET_BIT(command, 4);
@@ -122,7 +128,11 @@ uint8_t LCD_u8SendCommand(uint8_t command){
 	}
 	return state;
 }
-
+/*
+* brief: This function is used to send a data character to he LCD
+* param.: (input) the data to be sent
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
 uint8_t LCD_u8SendData(uint8_t data) {
 
 	uint8_t state = STD_TYPES_OK;
@@ -188,7 +198,11 @@ uint8_t LCD_u8SendData(uint8_t data) {
 
 }
 
-
+/*
+* brief: This function is used to send a string to the LCD
+* param.: (input) a pointer to char pointing to the string
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
 uint8_t LCD_u8SendString(uint8_t *str){
 	uint8_t state = STD_TYPES_OK;
 	if(str == NULL){
@@ -204,4 +218,54 @@ uint8_t LCD_u8SendString(uint8_t *str){
 	}
 	return state;
 
+}
+/*
+* brief: This function is used to send a positive integer to the LCD
+* param.: (input) the integer to be sent
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
+void LCD_u8SendNumber(uint16_t num)
+{
+
+	uint16_t y = 1;
+	do{
+		y = (y * 10) + (num % 10);
+		num = num /10;
+	}while(num > 0);
+	
+	while(y>1)
+	{
+		LCD_u8SendData((y%10)+48);
+		y=y/10;
+	}
+}
+/*
+* brief: This function is used to set the cursor at a certain position on the Display
+* param.: (input) the row to set the cursor at, should be 0 or 1
+* param.: (input) the column to set the cursor at, should be an integer between 0 and 15
+* return: (output) the Error state of the function 0 if an error happens and 1 otherwise
+*/
+uint8_t LCD_u8SetCursor(uint8_t row, uint8_t col)
+{	uint8_t state = STD_TYPES_OK;
+	if(col > 15){
+		state = STD_TYPES_NOK;
+	}
+	else{
+		switch (row)
+		{
+			case 0:
+			col |= 0x80;
+			break;
+			case 1:
+			col |= 0xC0;
+			break;
+			default:
+			state = STD_TYPES_NOK;
+			break;
+		}
+	}
+	if(state == STD_TYPES_OK){
+		state = LCD_u8SendCommand(col);
+	}
+	return state;
 }
