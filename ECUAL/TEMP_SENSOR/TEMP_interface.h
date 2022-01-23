@@ -22,6 +22,7 @@ typedef enum{
 	TEMP_OK=1,
 	TEMP_NULL_INPUT,
 	TEMP_ADC_Error,
+	TEMP_UNSTABLE
 }TEMP_ErrorState;
 
 void TEMP_u8Init(void);

@@ -22,7 +22,7 @@ void TEMP_u8Init(void)
 uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, uint16_t* f32TempReading)
 {
 	uint8_t u8ErrorState = TEMP_OK;
-	uint16_t u16PreRead;
+	uint16_t u16PreRead=0;
 	uint8_t u8ReadingCounts=0;
 	uint8_t u8TimeoutCounter=0;
 	if (TempElement!= NULL && f32TempReading !=NULL )
@@ -33,25 +33,17 @@ uint8_t TEMP_u8GetRead(TEMPElement_t* TempElement, uint16_t* f32TempReading)
 			u8ErrorState = TEMP_ADC_Error;
 		}else
 		{
-			while (u8ReadingCounts<15 && u8TimeoutCounter<200)
+			while (u8ReadingCounts<100 )
 			{
 				ADC_u8GetVolt(f32TempReading);
 				*f32TempReading = ((uint16_t)*f32TempReading/10);
-				if (*f32TempReading!= u16PreRead)
-				{
-					u8ReadingCounts = 0;
-				}else
-				{
-					u8ReadingCounts++;
-				}
-				u16PreRead = *f32TempReading;
-				u8TimeoutCounter++;
+				u8ReadingCounts++;
+				u16PreRead += *f32TempReading;
 			}
+			*f32TempReading = u16PreRead/100;
 
 		}
-		if (u8TimeoutCounter==200)
-		{
-		}
+
 	}else
 	{
 		u8ErrorState = TEMP_NULL_INPUT;

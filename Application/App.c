@@ -151,7 +151,7 @@ void App(void){
 				}
 
 				// only update the LCD if there is a change in temperature more than 3 degrees or the motor speed is updated
-				if((abs(u16TempValue, u16OldTemp) > 3)|| (u8MotorSpeed != u8OldSpeed)){
+				if((abs(u16TempValue, u16OldTemp) > 1)|| (u8MotorSpeed != u8OldSpeed)){
 					printLCD(u8State);
 					TIMER0_u8PollingDelay(100);
 				}
