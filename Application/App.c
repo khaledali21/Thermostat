@@ -68,16 +68,19 @@ void App(void){
 					case MANUAL_KEY:
 					//if the pressed Key is The MANUAL Key then change the State of the Program to MANUAL
 					u8State = MANUAL;
+					//After changing the program state print the LCD page conercing the new one
+					printLCD(u8State);
 					break;
 					case AUTO_KEY:
 					//if the pressed Key is The AUTO Key then change the State of the Program to AUTO
 					u8State = AUTO;
+					//After changing the program state print the LCD page conercing the new one
+					printLCD(u8State);
 					break;
 					default:
 					break;
 				}
-			//After changing the program state print the LCD page conercing the new one
-				printLCD(u8State);
+
 				break;
 			case MANUAL:
 				// if the Program state is MANUAL -> in this state the program uses the user input to change the motor speed
@@ -88,23 +91,27 @@ void App(void){
 				//if the user input is UP_KEY increase the motor speed if it is less than 100
 				if(u8MotorSpeed < 100){
 					u8MotorSpeed += 10;
+					//update the LCD page with the new information
+					printLCD(u8State);
 				}
 				break;
 				case DOWN_KEY:
 				//if the user input is DOWN_KEY decrease the motor speed if it is higher than 0
 				if(u8MotorSpeed > 0){
 					u8MotorSpeed -= 10;
+					//update the LCD page with the new information
+					printLCD(u8State);
 				}
 				break;
 				case SETTINGS_KEY:
 				//if the user input is SETTINGS_KEY update the program state to SETTINGS
 				u8State = SETTINGS;
+				//update the LCD page with the new information
+				printLCD(u8State);
 				break;
 				default:
 				break;
 				}
-				//update the LCD page with the new information
-				printLCD(u8State);
 				// update the motor speed with the new speed as the user set it
 				if(u8MotorSpeed <=30 && u8MotorSpeed > 0){
 					MOTOR_Move(&motor, SLOW, CLOCKWISE);
@@ -173,7 +180,7 @@ uint8_t printLCD(SysState_t lcd_mode){
 	//Check what is the state of the system and depending on it decide what to print
 		switch(lcd_mode){
 			case SETTINGS:{
-			uint8_t line1[] = "Choose a u8State.";
+			uint8_t line1[] = "Choose a mode:";
 			LCD_u8SendString(line1);
 			LCD_u8SetCursor(1, 0);
 			uint8_t line2[] = "4)Manual 6)Auto";
